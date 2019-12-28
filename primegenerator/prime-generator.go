@@ -2,15 +2,22 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"runtime"
 
-	primetester "github.com/radhe-soni/two-sided-prime/primetester/api"
+	primetest "github.com/radhe-soni/two-sided-prime/primetester/api"
 )
 
 func main() {
-	for i := int64(30); i < 1<<15; i++ {
-		if primetester.IsPrime(i) {
-			fmt.Println(primetester.IsPrime(i))
-			fmt.Println(i)
-		}
+	log.Println("start")
+	runtime.GOMAXPROCS(runtime.NumCPU())
+	for i := int64(30); i < 1<<20; i++ {
+		go func(j int64) {
+			if primetest.IsTwoSidedPrime(j) {
+				fmt.Println(j)
+			}
+		}(i)
+
 	}
+	log.Println("end")
 }
