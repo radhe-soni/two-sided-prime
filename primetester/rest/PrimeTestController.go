@@ -35,5 +35,6 @@ func handleRequests() {
 }
 
 func main() {
+	log.Println("Starting service at localhost:10000")
 	handleRequests()
 }
