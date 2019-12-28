@@ -18,9 +18,9 @@ func isTwoSidedPrime(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	key := vars["integer"]
 
-	number, error := strconv.ParseInt(key, 10, 64)
-	if error != nil {
-		log.Fatal("Error occured while converting ", key, error)
+	if number, error := strconv.ParseInt(key, 10, 64); error != nil {
+		log.Println("Error occured while converting ", key, error)
+		http.Error(w, "Input could not be parsed to an integer : "+key, 500)
 	} else {
 		fmt.Printf("%T %v", number, number)
 		fmt.Fprintf(w, strconv.FormatBool(primetest.IsTwoSidedPrime(number)))
