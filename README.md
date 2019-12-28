@@ -7,8 +7,10 @@ A project on Golang to determine if an integer is two sided prime.
 3.	Removing 1 digit at a time from right hand side from the original number gives you prime numbers. e.g. 379, 37, 3 are all prime numbers.
 
 ### Running the service
-* In order to run program, execute 
-`go run github.com/radhe-soni/two-sided-prime/primetester/rest/PrimeTestController.go`
+* In order to run program, first get the program using `go get github.com/radhe-soni/two-sided-prime/` and then
+build program using 
+`go build -o primeTestService github.com/radhe-soni/two-sided-prime/primetester/rest/`
+* execute `./primeTestService` to start the service.
 * Open (http://localhost:10000/health) in browser to check if service has started.
 * Navigate to (http://localhost:10000/test/two-sided-prime/{number}) for utility end-point, replace "{number}" with test number.
 
