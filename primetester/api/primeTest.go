@@ -3,6 +3,7 @@ package primetest
 import (
 	"math"
 	"strconv"
+	"runtime"
 )
 
 //AsyncIsPrime : Check if an integer is prime.
@@ -49,6 +50,7 @@ func AsyncIsTwoSidedPrime(test int64) <-chan bool {
 
 //IsTwoSidedPrime : Checks if an integer is two sided prime
 func IsTwoSidedPrime(test int64) bool {
+	runtime.GOMAXPROCS(runtime.NumCPU())
 	numberOfDigits := len(strconv.FormatInt(test, 10))
 	result := IsPrime(test)
 	for i := 1; i < numberOfDigits && result; i++ {
